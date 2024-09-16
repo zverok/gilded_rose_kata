@@ -44,4 +44,13 @@ describe GildedRose do
     it_with(days: 10) { is_expected.to become(sell_in: 0, quality: 80) }
     it_with(days: 100) { is_expected.to become(sell_in: 0, quality: 80) }
   end
+
+  describe 'conjured item' do
+    subject(:item) { Item.new(name="Conjured Mana Cake", sell_in=10, quality=30) }
+
+    it_with(days: 1) { is_expected.to become(sell_in: 9, quality: 28) }
+    it_with(days: 10) { is_expected.to become(sell_in: 0, quality: 10) }
+    it_with(days: 11) { is_expected.to become(sell_in: -1, quality: 6) }
+    it_with(days: 15) { is_expected.to become(sell_in: -5, quality: 0) }
+  end
 end

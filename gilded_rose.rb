@@ -27,6 +27,10 @@ class GildedRose
         +2
       in ["Backstage passes to a TAFKAL80ETC concert", _]
         +1
+      in [/Conjured/, ..0]
+        -4
+      in [/Conjured/, _]
+        -2
       in [_, ..0]
         -2
       in [_, _]
