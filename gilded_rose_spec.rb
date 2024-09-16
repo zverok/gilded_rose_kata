@@ -23,6 +23,7 @@ describe GildedRose do
 
     it_with(days: 1) { is_expected.to become(sell_in: 1, quality: 1) }
     it_with(days: 5) { is_expected.to become(sell_in: -3, quality: 8) }
+    it_with(days: 100) { is_expected.to become(sell_in: -98, quality: 50) }
   end
 
   describe 'backstage pass' do

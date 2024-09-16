@@ -4,52 +4,38 @@ class GildedRose
     @items = items
   end
 
-  def update_quality()
-    @items.each do |item|
-      if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
-        if item.quality > 0
-          if item.name != "Sulfuras, Hand of Ragnaros"
-            item.quality = item.quality - 1
-          end
-        end
-      else
-        if item.quality < 50
-          item.quality = item.quality + 1
-          if item.name == "Backstage passes to a TAFKAL80ETC concert"
-            if item.sell_in < 11
-              if item.quality < 50
-                item.quality = item.quality + 1
-              end
-            end
-            if item.sell_in < 6
-              if item.quality < 50
-                item.quality = item.quality + 1
-              end
-            end
-          end
-        end
+  def update_quality
+    @items.each { update_item(_1) }
+  end
+
+  private
+
+  def update_item(item)
+    return if item.name == "Sulfuras, Hand of Ragnaros"
+
+    change =
+      case [item.name, item.sell_in]
+      in ["Aged Brie", ..0]
+        +2
+      in ["Aged Brie", _]
+        +1
+      in ["Backstage passes to a TAFKAL80ETC concert", ..0]
+        -item.quality
+      in ["Backstage passes to a TAFKAL80ETC concert", ..5]
+        +3
+      in ["Backstage passes to a TAFKAL80ETC concert", ..10]
+        +2
+      in ["Backstage passes to a TAFKAL80ETC concert", _]
+        +1
+      in [_, ..0]
+        -2
+      in [_, _]
+        -1
       end
-      if item.name != "Sulfuras, Hand of Ragnaros"
-        item.sell_in = item.sell_in - 1
-      end
-      if item.sell_in < 0
-        if item.name != "Aged Brie"
-          if item.name != "Backstage passes to a TAFKAL80ETC concert"
-            if item.quality > 0
-              if item.name != "Sulfuras, Hand of Ragnaros"
-                item.quality = item.quality - 1
-              end
-            end
-          else
-            item.quality = item.quality - item.quality
-          end
-        else
-          if item.quality < 50
-            item.quality = item.quality + 1
-          end
-        end
-      end
-    end
+
+    item.sell_in -= 1
+
+    item.quality = (item.quality + change).clamp(0..50)
   end
 end
 
