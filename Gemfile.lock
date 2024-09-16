@@ -1,0 +1,36 @@
+GIT
+  remote: https://github.com/zverok/saharspec.git
+  revision: ea7db794103f63df358c9e89df6069d09f06014d
+  branch: experimental
+  specs:
+    saharspec (0.0.10)
+      ruby2_keywords
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    diff-lcs (1.5.1)
+    rspec (3.13.0)
+      rspec-core (~> 3.13.0)
+      rspec-expectations (~> 3.13.0)
+      rspec-mocks (~> 3.13.0)
+    rspec-core (3.13.1)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-support (3.13.1)
+    ruby2_keywords (0.0.5)
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  rspec
+  saharspec!
+
+BUNDLED WITH
+   2.4.22
